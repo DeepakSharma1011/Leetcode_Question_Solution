@@ -1,0 +1,20 @@
+class Solution {
+    public int[] shuffle(int[] nums, int n) {
+        int f = 2*n;
+        int m = n;
+        int l = 0 , r = m;
+
+        if(f == 1) return nums;
+        int arr[] = new int[f];
+        int k = 0;
+        for(int i = 0 ; i<f ; i++){
+            if(l<m && r<=f){
+                arr[k] = nums[l];
+                l++; k++;
+                arr[k] = nums[r];
+                r++; k++;
+            }
+        }
+        return arr;
+    }
+}
