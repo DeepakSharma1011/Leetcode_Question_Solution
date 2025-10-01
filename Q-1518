@@ -1,0 +1,14 @@
+class Solution {
+    public int numWaterBottles(int numBottles, int numExchange) {
+
+        int max = numBottles;
+        while(numBottles >= numExchange){
+            int newB= numBottles/numExchange;
+            int remB= numBottles%numExchange;
+            max += newB;
+            numBottles = newB+remB;
+        }
+
+        return max;
+    }
+}
