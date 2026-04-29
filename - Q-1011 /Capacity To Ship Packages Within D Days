@@ -1,0 +1,45 @@
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+
+        int n = weights.length;
+        int mini = Integer.MIN_VALUE;
+        int maxi = 0;
+
+        for(int num : weights){
+            maxi += num;
+            if(num > mini){
+                mini = num; 
+            }
+        }
+
+        int ans = 0;
+        while(mini <= maxi){
+            int mid = mini+(maxi-mini)/2;
+            if(isValid(mid,weights,days)){
+                ans = mid;
+                maxi = mid-1;
+            }
+            else{
+                mini = mid+1;
+            }
+        }
+
+        return ans;
+        
+    }
+    public boolean isValid(int mid, int arr[], int d){
+        int day = 1;
+        int sum = 0;
+
+        for (int num : arr) {
+            if (sum + num <= mid) {
+                sum += num;
+            } else {
+                day++;
+                sum = num;
+            }
+        }
+
+        return day <= d;
+    }
+}
