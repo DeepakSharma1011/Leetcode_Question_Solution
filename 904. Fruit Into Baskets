@@ -1,0 +1,25 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int n = fruits.length;
+        int l= 0, maxilen = -1;
+
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int h = 0; h<n; h++){
+            int tree = fruits[h];
+            map.put(tree, map.getOrDefault(tree,0)+1);
+
+            while(map.size() > 2){
+                int left = fruits[l];
+                map.put(left,map.get(left)-1);
+                if(map.get(left) == 0){
+                    map.remove(left);
+                }
+                l++;
+            }
+            int len = h-l+1;
+            maxilen = Math.max(len,maxilen);
+        }
+
+        return maxilen;
+    }
+}
